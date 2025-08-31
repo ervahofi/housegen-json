@@ -1,0 +1,237 @@
+{
+  "metadata": {
+    "units": "meters",
+    "coordinate_frame": "XY plan; origin at street/front where applicable",
+    "area_method": "Rectangles analytical, polygons via Shapely negative buffer (mitre), shapely_version=1.7.1"
+  },
+  "P4_SiteBoundaries": [
+    {
+      "id": 1,
+      "name": "Square 20x20 - Small setback",
+      "boundary": { "type": "rectangle", "width_m": 20.0, "height_m": 20.0 },
+      "setbacks_m": { "uniform": 1.0 },
+      "site_area_m2": 400.0,
+      "buildable": { "type": "rectangle", "width_m": 18.0, "height_m": 18.0, "area_m2": 324.0 },
+      "notes": "Analytical inset rectangle."
+    },
+    {
+      "id": 2,
+      "name": "Square 20x20 - Medium setback",
+      "boundary": { "type": "rectangle", "width_m": 20.0, "height_m": 20.0 },
+      "setbacks_m": { "uniform": 3.0 },
+      "site_area_m2": 400.0,
+      "buildable": { "type": "rectangle", "width_m": 14.0, "height_m": 14.0, "area_m2": 196.0 },
+      "notes": "Analytical inset rectangle."
+    },
+    {
+      "id": 3,
+      "name": "Square 20x20 - Large setback",
+      "boundary": { "type": "rectangle", "width_m": 20.0, "height_m": 20.0 },
+      "setbacks_m": { "uniform": 5.0 },
+      "site_area_m2": 400.0,
+      "buildable": { "type": "rectangle", "width_m": 10.0, "height_m": 10.0, "area_m2": 100.0 },
+      "notes": "Analytical inset rectangle."
+    },
+    {
+      "id": 4,
+      "name": "Rectangle 30x15 - Small setback",
+      "boundary": { "type": "rectangle", "width_m": 30.0, "height_m": 15.0 },
+      "setbacks_m": { "uniform": 1.0 },
+      "site_area_m2": 450.0,
+      "buildable": { "type": "rectangle", "width_m": 28.0, "height_m": 13.0, "area_m2": 364.0 },
+      "notes": "Analytical inset rectangle."
+    },
+    {
+      "id": 5,
+      "name": "Rectangle 30x15 - Medium setback",
+      "boundary": { "type": "rectangle", "width_m": 30.0, "height_m": 15.0 },
+      "setbacks_m": { "uniform": 3.0 },
+      "site_area_m2": 450.0,
+      "buildable": { "type": "rectangle", "width_m": 24.0, "height_m": 9.0, "area_m2": 216.0 },
+      "notes": "Analytical inset rectangle."
+    },
+    {
+      "id": 6,
+      "name": "Rectangle 30x15 - Large setback",
+      "boundary": { "type": "rectangle", "width_m": 30.0, "height_m": 15.0 },
+      "setbacks_m": { "uniform": 5.0 },
+      "site_area_m2": 450.0,
+      "buildable": { "type": "rectangle", "width_m": 20.0, "height_m": 5.0, "area_m2": 100.0 },
+      "notes": "Analytical inset rectangle."
+    },
+    {
+      "id": 7,
+      "name": "Wide Rectangle 40x10 - Small setback",
+      "boundary": { "type": "rectangle", "width_m": 40.0, "height_m": 10.0 },
+      "setbacks_m": { "uniform": 1.0 },
+      "site_area_m2": 400.0,
+      "buildable": { "type": "rectangle", "width_m": 38.0, "height_m": 8.0, "area_m2": 304.0 },
+      "notes": "Analytical inset rectangle."
+    },
+    {
+      "id": 8,
+      "name": "Wide Rectangle 40x10 - Large setback",
+      "boundary": { "type": "rectangle", "width_m": 40.0, "height_m": 10.0 },
+      "setbacks_m": { "uniform": 5.0 },
+      "site_area_m2": 400.0,
+      "buildable": { "type": "rectangle", "width_m": 30.0, "height_m": 0.0, "area_m2": 0.0 },
+      "notes": "Analytical inset rectangle."
+    },
+    {
+      "id": 9,
+      "name": "Corner L-Shape 20x20 minus 12x12 - Small setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[0,0],[20,0],[20,8],[8,8],[8,20],[0,20]] },
+      "setbacks_m": { "uniform": 1.0 },
+      "site_area_m2": 256.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 1.0, "area_m2": 192.0, "result_geom": "Polygon" },
+      "notes": "Precomputed area via negative buffer."
+    },
+    {
+      "id": 10,
+      "name": "Corner L-Shape 20x20 minus 12x12 - Large setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[0,0],[20,0],[20,8],[8,8],[8,20],[0,20]] },
+      "setbacks_m": { "uniform": 5.0 },
+      "site_area_m2": 256.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 5.0, "area_m2": 64.0, "result_geom": "Polygon" },
+      "notes": "Precomputed area via negative buffer."
+    },
+    {
+      "id": 11,
+      "name": "Trapezoid 12→20 width, depth 25 - Medium setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[-6,0],[6,0],[10,25],[-10,25]] },
+      "setbacks_m": { "uniform": 3.0 },
+      "site_area_m2": 400.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 3.0, "area_m2": 232.5, "result_geom": "Polygon" },
+      "notes": "Precomputed area via negative buffer."
+    },
+    {
+      "id": 12,
+      "name": "Trapezoid 12→20 width, depth 25 - Large setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[-6,0],[6,0],[10,25],[-10,25]] },
+      "setbacks_m": { "uniform": 5.0 },
+      "site_area_m2": 400.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 5.0, "area_m2": 150.0, "result_geom": "Polygon" },
+      "notes": "Precomputed area via negative buffer."
+    },
+    {
+      "id": 13,
+      "name": "Irregular polygon - Small setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[0,0],[24,0],[30,10],[26,22],[12,25],[0,18]] },
+      "setbacks_m": { "uniform": 1.0 },
+      "site_area_m2": 582.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 1.0, "area_m2": 500.0, "result_geom": "Polygon" },
+      "notes": "Precomputed area via negative buffer."
+    },
+    {
+      "id": 14,
+      "name": "Irregular polygon - Large setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[0,0],[24,0],[30,10],[26,22],[12,25],[0,18]] },
+      "setbacks_m": { "uniform": 5.0 },
+      "site_area_m2": 582.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 5.0, "area_m2": 290.0, "result_geom": "Polygon" },
+      "notes": "Precomputed area via negative buffer."
+    },
+    {
+      "id": 15,
+      "name": "Triangle right 25x20 - Small setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[0,0],[25,0],[0,20]] },
+      "setbacks_m": { "uniform": 1.0 },
+      "site_area_m2": 250.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 1.0, "area_m2": 205.0, "result_geom": "Polygon" },
+      "notes": "Precomputed area via negative buffer."
+    },
+    {
+      "id": 16,
+      "name": "Triangle right 25x20 - Large setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[0,0],[25,0],[0,20]] },
+      "setbacks_m": { "uniform": 5.0 },
+      "site_area_m2": 250.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 5.0, "area_m2": 125.0, "result_geom": "Polygon" },
+      "notes": "Precomputed area via negative buffer."
+    },
+    {
+      "id": 17,
+      "name": "Curved/Arc front - Medium setback",
+      "boundary": {
+        "type": "arc_front_parcel",
+        "units": "m",
+        "center_xy": [0,0],
+        "radius_m": 22,
+        "theta_deg": [-60, 60],
+        "back_y": 25,
+        "width_hint": 30,
+        "n_samples": 512
+      },
+      "setbacks_m": { "uniform": 3.0 },
+      "site_area_m2": 790.63,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 3.0, "area_m2": 617.11, "result_geom": "Polygon" },
+      "notes": "Arc sampled to polygon; area via negative buffer."
+    },
+    {
+      "id": 18,
+      "name": "Curved/Arc front - Large setback",
+      "boundary": {
+        "type": "arc_front_parcel",
+        "units": "m",
+        "center_xy": [0,0],
+        "radius_m": 22,
+        "theta_deg": [-60, 60],
+        "back_y": 25,
+        "width_hint": 30,
+        "n_samples": 512
+      },
+      "setbacks_m": { "uniform": 5.0 },
+      "site_area_m2": 790.63,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 5.0, "area_m2": 506.55, "result_geom": "Polygon" },
+      "notes": "Arc sampled to polygon; area via negative buffer."
+    },
+    {
+      "id": 19,
+      "name": "Flag lot - Small setback",
+      "boundary": {
+        "type": "flag_lot",
+        "driveway_rect": { "origin_xy": [0,0], "width_m": 4, "height_m": 20 },
+        "rear_pad_rect": { "origin_xy": [4,20], "width_m": 20, "height_m": 20 }
+      },
+      "setbacks_m": { "uniform": 1.0, "driveway_min_clear": 3.0 },
+      "site_area_m2": 480.0,
+      "buildable": {
+        "type": "composite",
+        "rear_pad_buildable": { "type": "rectangle", "width_m": 18.0, "height_m": 18.0, "area_m2": 324.0 },
+        "driveway_buildable": { "type": "corridor_only", "min_clear_m": 3.0 },
+        "total_buildable_area_m2": 324.0
+      },
+      "notes": "Rear pad inset; driveway is access corridor only."
+    },
+    {
+      "id": 20,
+      "name": "Flag lot - Large setback",
+      "boundary": {
+        "type": "flag_lot",
+        "driveway_rect": { "origin_xy": [0,0], "width_m": 4, "height_m": 20 },
+        "rear_pad_rect": { "origin_xy": [4,20], "width_m": 20, "height_m": 20 }
+      },
+      "setbacks_m": { "uniform": 5.0, "driveway_min_clear": 3.0 },
+      "site_area_m2": 480.0,
+      "buildable": {
+        "type": "composite",
+        "rear_pad_buildable": { "type": "rectangle", "width_m": 10.0, "height_m": 10.0, "area_m2": 100.0 },
+        "driveway_buildable": { "type": "corridor_only", "min_clear_m": 3.0 },
+        "total_buildable_area_m2": 100.0
+      },
+      "notes": "Rear pad inset; driveway is access corridor only."
+    },
+    {
+      "id": 21,
+      "name": "Composite plot 30x25 - Medium setback",
+      "boundary": { "type": "polygon", "units": "m", "vertices_xy": [[0,0],[30,0],[30,25],[0,25]] },
+      "setbacks_m": { "uniform": 3.0 },
+      "site_area_m2": 750.0,
+      "buildable": { "type": "offset_polygon", "join_style": "mitre", "inset_m": 3.0, "area_m2": 486.0, "result_geom": "Polygon" },
+      "subplots": [ { "rect": [0,0,15,25] }, { "rect": [15,0,15,25] } ],
+      "notes": "Two merged 15x25 parcels; inset via negative buffer."
+    }
+  ]
+}
+
+

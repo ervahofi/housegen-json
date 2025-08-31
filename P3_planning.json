@@ -1,0 +1,329 @@
+{
+  "P3_PlanningTypes": [
+    {
+      "id": 1,
+      "name": "Linear",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.04 },
+      "routing": {
+        "type": "corridor",
+        "polyline": [[0.08, 0.50], [0.92, 0.50]],
+        "width": 0.10,
+        "orientation": "east-west"
+      },
+      "nodes": [
+        { "id": "ENTRY", "role": "Entry", "center": [0.10, 0.50], "size": [0.12, 0.16] },
+        { "id": "LIV", "role": "Living", "center": [0.26, 0.50], "size": [0.18, 0.26] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.42, 0.50], "size": [0.18, 0.22] },
+        { "id": "BATH", "role": "Bath", "center": [0.56, 0.50], "size": [0.10, 0.14] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.70, 0.50], "size": [0.16, 0.20] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.84, 0.50], "size": [0.16, 0.20] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","KITDIN"], ["KITDIN","BATH"], ["BATH","BED1"], ["BED1","BED2"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "order_along_axis": { "axis": "x", "sequence": ["ENTRY","LIV","KITDIN","BATH","BED1","BED2"] },
+        "façade_priority": { "south": ["LIV","BED1","BED2"] },
+        "service_stack": ["BATH","KITDIN"],
+        "access_from_corridor": ["LIV","KITDIN","BATH","BED1","BED2"]
+      },
+      "placement_hints": [
+        "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+        "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Courtyard",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.05 },
+      "routing": {
+        "type": "courtyard_void",
+        "polygon": [[0.38,0.38],[0.62,0.38],[0.62,0.62],[0.38,0.62]]
+      },
+      "nodes": [
+        { "id": "ENTRY", "role": "Entry", "center": [0.10, 0.50], "size": [0.12, 0.16] },
+        { "id": "LIV", "role": "Living", "center": [0.50, 0.80], "size": [0.24, 0.16] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.80, 0.50], "size": [0.20, 0.18] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.50, 0.20], "size": [0.18, 0.16] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.20, 0.50], "size": [0.18, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.70, 0.25], "size": [0.12, 0.12] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","COURTYARD"], ["KITDIN","COURTYARD"],
+        ["BED1","COURTYARD"], ["BED2","COURTYARD"], ["BATH","KITDIN"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "keep_out": { "polygon": [[0.38,0.38],[0.62,0.38],[0.62,0.62],[0.38,0.62]] },
+        "must_face_void": ["LIV","KITDIN","BED1","BED2"],
+        "façade_priority": { "south": ["LIV","BED1"], "east": ["KITDIN"] }
+      },
+      "placement_hints": [
+        "Maintain 0.02–0.04 buffer from courtyard edges.",
+        "If overlap detected, shrink larger public room first by 5%."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Cluster",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.05 },
+      "routing": {
+        "type": "shared_node",
+        "hubs": [{ "id": "HALL", "center": [0.50, 0.50], "radius": 0.06 }]
+      },
+      "nodes": [
+        { "id": "LIV", "role": "Living", "center": [0.30, 0.55], "size": [0.22, 0.18] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.70, 0.55], "size": [0.20, 0.18] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.30, 0.25], "size": [0.18, 0.16] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.70, 0.25], "size": [0.18, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.50, 0.30], "size": [0.12, 0.12] },
+        { "id": "ENTRY", "role": "Entry", "center": [0.10, 0.50], "size": [0.12, 0.16] }
+      ],
+      "graph_edges": [
+        ["ENTRY","HALL"], ["HALL","LIV"], ["HALL","KITDIN"], ["HALL","BED1"], ["HALL","BED2"], ["HALL","BATH"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "hub_access": { "hub": "HALL", "members": ["LIV","KITDIN","BED1","BED2","BATH"] },
+        "public_cluster": ["LIV","KITDIN"],
+        "private_cluster": ["BED1","BED2"]
+      },
+      "placement_hints": [
+        "Keep cluster centroids in quadrants; mirror if site aspect ratio > 1.4.",
+        "If KITDIN drifts >0.15 from LIV, pull toward mid x=0.5 by 0.05."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Atrium",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.05 },
+      "routing": {
+        "type": "void_core",
+        "polygon": [[0.42,0.30],[0.58,0.30],[0.58,0.70],[0.42,0.70]]
+      },
+      "nodes": [
+        { "id": "LIV", "role": "Living", "center": [0.25, 0.50], "size": [0.22, 0.18] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.75, 0.50], "size": [0.20, 0.18] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.50, 0.15], "size": [0.18, 0.16] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.50, 0.85], "size": [0.18, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.35, 0.25], "size": [0.12, 0.12] },
+        { "id": "ENTRY", "role": "Entry", "center": [0.08, 0.50], "size": [0.12, 0.16] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","ATRIUM"], ["KITDIN","ATRIUM"], ["BED1","ATRIUM"], ["BED2","ATRIUM"], ["BATH","LIV"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "keep_out": { "polygon": [[0.42,0.30],[0.58,0.30],[0.58,0.70],[0.42,0.70]] },
+        "visual_connection": ["LIV","KITDIN","BED1","BED2"]
+      },
+      "placement_hints": [
+        "Align long edges of rooms parallel to atrium’s nearest edge.",
+        "Maintain 0.03–0.05 buffer from atrium polygon."
+      ]
+    },
+    {
+      "id": 5,
+      "name": "L-Shaped",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.04 },
+      "routing": {
+        "type": "el_spine",
+        "segments": [
+          { "polyline": [[0.10,0.50],[0.60,0.50]], "width": 0.10 },
+          { "polyline": [[0.10,0.50],[0.10,0.85]], "width": 0.10 }
+        ]
+      },
+      "nodes": [
+        { "id": "ENTRY", "role": "Entry", "center": [0.10, 0.50], "size": [0.12, 0.16] },
+        { "id": "LIV", "role": "Living", "center": [0.35, 0.50], "size": [0.22, 0.20] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.55, 0.50], "size": [0.18, 0.18] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.10, 0.72], "size": [0.18, 0.16] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.10, 0.88], "size": [0.18, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.52, 0.30], "size": [0.12, 0.12] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","KITDIN"], ["ENTRY","BED1"], ["BED1","BED2"], ["KITDIN","BATH"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "branching": { "spine": "horizontal_then_vertical", "private_branch": ["BED1","BED2"] },
+        "façade_priority": { "south": ["LIV","BED1","BED2"] }
+      },
+      "placement_hints": [
+        "Keep private branch centers within x ∈ [0.06,0.16].",
+        "If BED2 overlaps boundary margin, nudge y to 0.90 and shrink h by 5%."
+      ]
+    },
+    {
+      "id": 6,
+      "name": "U-Shaped",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.05 },
+      "routing": {
+        "type": "u_court",
+        "open_side": "south",
+        "void": [[0.25,0.35],[0.75,0.35],[0.75,0.65],[0.25,0.65]]
+      },
+      "nodes": [
+        { "id": "ENTRY", "role": "Entry", "center": [0.50, 0.15], "size": [0.14, 0.18] },
+        { "id": "LIV", "role": "Living", "center": [0.50, 0.80], "size": [0.26, 0.18] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.80, 0.50], "size": [0.20, 0.18] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.20, 0.50], "size": [0.18, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.50, 0.40], "size": [0.12, 0.12] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","COURT"], ["KITDIN","COURT"], ["BED1","COURT"], ["BATH","KITDIN"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "keep_out": { "polygon": [[0.25,0.35],[0.75,0.35],[0.75,0.65],[0.25,0.65]] },
+        "must_face_void": ["LIV","KITDIN","BED1"]
+      },
+      "placement_hints": [
+        "Open side faces south; keep ENTRY below void (y < 0.30).",
+        "Align LIV centered on x=0.5 for symmetry."
+      ]
+    },
+    {
+      "id": 7,
+      "name": "T-Shaped",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.04 },
+      "routing": {
+        "type": "tee_spine",
+        "stem": { "polyline": [[0.50,0.10],[0.50,0.70]], "width": 0.10 },
+        "cross": { "polyline": [[0.20,0.70],[0.80,0.70]], "width": 0.10 }
+      },
+      "nodes": [
+        { "id": "ENTRY", "role": "Entry", "center": [0.50, 0.10], "size": [0.12, 0.16] },
+        { "id": "LIV", "role": "Living", "center": [0.50, 0.40], "size": [0.24, 0.20] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.50, 0.58], "size": [0.20, 0.18] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.28, 0.85], "size": [0.18, 0.16] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.72, 0.85], "size": [0.18, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.70, 0.58], "size": [0.12, 0.12] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","KITDIN"], ["KITDIN","BED1"], ["KITDIN","BED2"], ["KITDIN","BATH"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "mirror_about": { "axis": "x=0.5", "nodes": ["BED1","BED2"] },
+        "vertical_order": { "sequence": ["ENTRY","LIV","KITDIN"] }
+      },
+      "placement_hints": [
+        "Keep BED1/BED2 centers symmetric around x=0.5 (Δx <= 0.01).",
+        "If KITDIN width grows, reduce LIV height first."
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Cross / X-Shaped",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.05 },
+      "routing": {
+        "type": "cross_spines",
+        "arms": [
+          { "polyline": [[0.50,0.15],[0.50,0.85]], "width": 0.08 },
+          { "polyline": [[0.15,0.50],[0.85,0.50]], "width": 0.08 }
+        ]
+      },
+      "nodes": [
+        { "id": "LIV", "role": "Living", "center": [0.50, 0.35], "size": [0.22, 0.18] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.50, 0.65], "size": [0.20, 0.16] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.30, 0.50], "size": [0.16, 0.16] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.70, 0.50], "size": [0.16, 0.16] },
+        { "id": "ENTRY", "role": "Entry", "center": [0.20, 0.20], "size": [0.12, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.80, 0.20], "size": [0.12, 0.12] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","KITDIN"], ["LIV","BED1"], ["LIV","BED2"], ["KITDIN","BATH"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "orthogonal_spines": true,
+        "keep_clear": { "rect": [0.46,0.46,0.08,0.08] }
+      },
+      "placement_hints": [
+        "Preserve a clear cross at center (no nodes inside 0.46–0.54 square).",
+        "Balance public (south) vs private (east/west) arms."
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Terraced / Stepped",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.05 },
+      "routing": {
+        "type": "stepped_bands",
+        "levels": [
+          { "y": 0.25, "depth": 0.20 },
+          { "y": 0.50, "depth": 0.20 },
+          { "y": 0.75, "depth": 0.20 }
+        ]
+      },
+      "nodes": [
+        { "id": "ENTRY", "role": "Entry", "center": [0.15, 0.25], "size": [0.12, 0.16] },
+        { "id": "LIV", "role": "Living", "center": [0.40, 0.40], "size": [0.24, 0.18] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.65, 0.55], "size": [0.20, 0.16] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.35, 0.70], "size": [0.18, 0.16] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.60, 0.85], "size": [0.18, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.80, 0.35], "size": [0.12, 0.12] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","KITDIN"], ["KITDIN","BED1"], ["BED1","BED2"], ["KITDIN","BATH"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "monotonic_y": { "sequence": ["ENTRY","LIV","KITDIN","BED1","BED2"] },
+        "view_axis": "north"
+      },
+      "placement_hints": [
+        "Snap y-centers to bands (0.25/0.50/0.75 ± 0.04).",
+        "If width overflow, trim each upper level room width by 3%."
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Free-Form / Organic",
+      "bounds": { "width": 1.0, "height": 1.0, "margin": 0.05 },
+      "routing": {
+        "type": "soft_paths",
+        "control_points": [[0.15,0.20],[0.45,0.45],[0.80,0.65]]
+      },
+      "nodes": [
+        { "id": "ENTRY", "role": "Entry", "center": [0.12, 0.22], "size": [0.12, 0.16] },
+        { "id": "LIV", "role": "Living", "center": [0.38, 0.42], "size": [0.26, 0.20] },
+        { "id": "KITDIN", "role": "KitchenDining", "center": [0.62, 0.55], "size": [0.20, 0.18] },
+        { "id": "BED1", "role": "Bedroom", "center": [0.82, 0.74], "size": [0.18, 0.16] },
+        { "id": "BED2", "role": "Bedroom", "center": [0.22, 0.70], "size": [0.18, 0.16] },
+        { "id": "BATH", "role": "Bath", "center": [0.55, 0.30], "size": [0.12, 0.12] }
+      ],
+      "graph_edges": [
+        ["ENTRY","LIV"], ["LIV","KITDIN"], ["KITDIN","BED1"], ["LIV","BED2"], ["KITDIN","BATH"]
+      ],
+      "constraints": {
+        "non_overlap": true,
+        "min_gap": 0.02,
+        "curvilinear_bias": true,
+        "façade_priority": { "south": ["LIV","KITDIN"], "east": ["BED1"] }
+      },
+      "placement_hints": [
+        "Project door sides to tangents of soft path at nearest control arc.",
+        "Resolve overlaps by shrinking largest adjacent public room first (max 8%)."
+      ]
+    }
+  ],
+  "global_defaults": {
+    "units": "normalized",
+    "door_width": 0.04,
+    "corridor_clear": 0.08,
+    "snap_eps": 0.01,
+    "resolve_strategy": ["shift", "shrink", "reorder"]
+  }
+}

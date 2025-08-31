@@ -1,0 +1,25 @@
+{
+  "P1_Locations": [
+    { "id": 1, "city": "Cairo", "country": "Egypt", "climate": "Hot Desert (BWh)", "notes": "Very dry, extreme heat" },
+    { "id": 2, "city": "Riyadh", "country": "Saudi Arabia", "climate": "Hot Desert (BWh)", "notes": "High diurnal variation" },
+    { "id": 3, "city": "Istanbul", "country": "Turkey", "climate": "Mediterranean (Csa)", "notes": "Mixed seasonal performance" },
+    { "id": 4, "city": "Barcelona", "country": "Spain", "climate": "Mediterranean (Csa)", "notes": "Warm summers, mild winters" },
+    { "id": 5, "city": "Paris", "country": "France", "climate": "Oceanic (Cfb)", "notes": "Mild, humid year-round" },
+    { "id": 6, "city": "London", "country": "United Kingdom", "climate": "Oceanic (Cfb)", "notes": "Cool summers, rainy winters" },
+    { "id": 7, "city": "Berlin", "country": "Germany", "climate": "Continental (Dfb)", "notes": "Cold winters, warm summers" },
+    { "id": 8, "city": "Moscow", "country": "Russia", "climate": "Cold Continental (Dfb/Dfc)", "notes": "Harsh winters" },
+    { "id": 9, "city": "Helsinki", "country": "Finland", "climate": "Subarctic (Dfc)", "notes": "Short cool summers" },
+    { "id": 10, "city": "New Delhi", "country": "India", "climate": "Humid Subtropical (Cwa)", "notes": "Hot summers, monsoon" },
+    { "id": 11, "city": "Mumbai", "country": "India", "climate": "Tropical Wet & Dry (Aw)", "notes": "Heavy monsoon rains" },
+    { "id": 12, "city": "Bangkok", "country": "Thailand", "climate": "Tropical Monsoon (Am)", "notes": "High humidity, rainfall" },
+    { "id": 13, "city": "Singapore", "country": "Singapore", "climate": "Tropical Rainforest (Af)", "notes": "Uniformly hot & humid" },
+    { "id": 14, "city": "Beijing", "country": "China", "climate": "Monsoon-Influenced Continental (Dwa)", "notes": "Cold dry winters, humid summers" },
+    { "id": 15, "city": "Tokyo", "country": "Japan", "climate": "Humid Subtropical (Cfa)", "notes": "Hot humid summers, mild winters" },
+    { "id": 16, "city": "Sydney", "country": "Australia", "climate": "Humid Subtropical (Cfa)", "notes": "Moderate year-round" },
+    { "id": 17, "city": "Melbourne", "country": "Australia", "climate": "Oceanic (Cfb)", "notes": "Cool, changeable" },
+    { "id": 18, "city": "Mexico City", "country": "Mexico", "climate": "Subtropical Highland (Cwb)", "notes": "Mild due to altitude" },
+    { "id": 19, "city": "São Paulo", "country": "Brazil", "climate": "Humid Subtropical (Cfa)", "notes": "Warm wet summers" },
+    { "id": 20, "city": "Buenos Aires", "country": "Argentina", "climate": "Humid Subtropical (Cfa)", "notes": "Hot summers, mild winters" },
+    { "id": 21, "city": "Los Angeles", "country": "USA", "climate": "Mediterranean (Csa)", "notes": "Hot dry summers, mild winters" }
+  ]
+}

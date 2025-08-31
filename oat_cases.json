@@ -1,0 +1,6414 @@
+{
+  "cases": [
+    {
+      "case_id": "CASE_001",
+      "vary": null,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_002",
+      "vary": "P1_Locations",
+      "choice_id": 3,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_003",
+      "vary": "P1_Locations",
+      "choice_id": 4,
+      "selection": {
+        "location": {
+          "id": 4,
+          "city": "Barcelona",
+          "country": "Spain",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Warm summers, mild winters"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Barcelona, Spain (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_004",
+      "vary": "P1_Locations",
+      "choice_id": 5,
+      "selection": {
+        "location": {
+          "id": 5,
+          "city": "Paris",
+          "country": "France",
+          "climate": "Oceanic (Cfb)",
+          "notes": "Mild, humid year-round"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Paris, France (climate: Oceanic (Cfb)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_005",
+      "vary": "P1_Locations",
+      "choice_id": 6,
+      "selection": {
+        "location": {
+          "id": 6,
+          "city": "London",
+          "country": "United Kingdom",
+          "climate": "Oceanic (Cfb)",
+          "notes": "Cool summers, rainy winters"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in London, United Kingdom (climate: Oceanic (Cfb)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_006",
+      "vary": "P1_Locations",
+      "choice_id": 17,
+      "selection": {
+        "location": {
+          "id": 17,
+          "city": "Melbourne",
+          "country": "Australia",
+          "climate": "Oceanic (Cfb)",
+          "notes": "Cool, changeable"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Melbourne, Australia (climate: Oceanic (Cfb)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_007",
+      "vary": "P1_Locations",
+      "choice_id": 21,
+      "selection": {
+        "location": {
+          "id": 21,
+          "city": "Los Angeles",
+          "country": "USA",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Hot dry summers, mild winters"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Los Angeles, USA (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_008",
+      "vary": "P2_FamilyTypologies",
+      "choice_id": 1,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 1,
+          "family": "Single adult",
+          "profession": "Remote tech worker",
+          "notes": "High digital needs, home office"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: Single adult (Remote tech worker). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_009",
+      "vary": "P2_FamilyTypologies",
+      "choice_id": 3,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 3,
+          "family": "Couple (2 adults)",
+          "profession": "Both office workers",
+          "notes": "Daily commuting"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: Couple (2 adults) (Both office workers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_010",
+      "vary": "P2_FamilyTypologies",
+      "choice_id": 5,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 5,
+          "family": "Couple (2 adults)",
+          "profession": "Retired",
+          "notes": "Focus on comfort & accessibility"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: Couple (2 adults) (Retired). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_011",
+      "vary": "P2_FamilyTypologies",
+      "choice_id": 8,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_012",
+      "vary": "P2_FamilyTypologies",
+      "choice_id": 11,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 11,
+          "family": "5 members (2 adults + 3 children)",
+          "profession": "Tech + homemaker",
+          "notes": "Larger bedrooms required"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 5 members (2 adults + 3 children) (Tech + homemaker). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_013",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 1,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_014",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 2,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 2,
+          "name": "Courtyard",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.05
+          },
+          "routing": {
+            "type": "courtyard_void",
+            "polygon": [
+              [
+                0.38,
+                0.38
+              ],
+              [
+                0.62,
+                0.38
+              ],
+              [
+                0.62,
+                0.62
+              ],
+              [
+                0.38,
+                0.62
+              ]
+            ]
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.5,
+                0.8
+              ],
+              "size": [
+                0.24,
+                0.16
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.8,
+                0.5
+              ],
+              "size": [
+                0.2,
+                0.18
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.5,
+                0.2
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.2,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.7,
+                0.25
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "COURTYARD"
+            ],
+            [
+              "KITDIN",
+              "COURTYARD"
+            ],
+            [
+              "BED1",
+              "COURTYARD"
+            ],
+            [
+              "BED2",
+              "COURTYARD"
+            ],
+            [
+              "BATH",
+              "KITDIN"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "keep_out": {
+              "polygon": [
+                [
+                  0.38,
+                  0.38
+                ],
+                [
+                  0.62,
+                  0.38
+                ],
+                [
+                  0.62,
+                  0.62
+                ],
+                [
+                  0.38,
+                  0.62
+                ]
+              ]
+            },
+            "must_face_void": [
+              "LIV",
+              "KITDIN",
+              "BED1",
+              "BED2"
+            ],
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1"
+              ],
+              "east": [
+                "KITDIN"
+              ]
+            }
+          },
+          "placement_hints": [
+            "Maintain 0.02\u00e2\u20ac\u201c0.04 buffer from courtyard edges.",
+            "If overlap detected, shrink larger public room first by 5%."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Courtyard' with routing 'courtyard_void'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_015",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 3,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 3,
+          "name": "Cluster",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.05
+          },
+          "routing": {
+            "type": "shared_node",
+            "hubs": [
+              {
+                "id": "HALL",
+                "center": [
+                  0.5,
+                  0.5
+                ],
+                "radius": 0.06
+              }
+            ]
+          },
+          "nodes": [
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.3,
+                0.55
+              ],
+              "size": [
+                0.22,
+                0.18
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.7,
+                0.55
+              ],
+              "size": [
+                0.2,
+                0.18
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.3,
+                0.25
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.25
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.5,
+                0.3
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            },
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "HALL"
+            ],
+            [
+              "HALL",
+              "LIV"
+            ],
+            [
+              "HALL",
+              "KITDIN"
+            ],
+            [
+              "HALL",
+              "BED1"
+            ],
+            [
+              "HALL",
+              "BED2"
+            ],
+            [
+              "HALL",
+              "BATH"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "hub_access": {
+              "hub": "HALL",
+              "members": [
+                "LIV",
+                "KITDIN",
+                "BED1",
+                "BED2",
+                "BATH"
+              ]
+            },
+            "public_cluster": [
+              "LIV",
+              "KITDIN"
+            ],
+            "private_cluster": [
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Keep cluster centroids in quadrants; mirror if site aspect ratio > 1.4.",
+            "If KITDIN drifts >0.15 from LIV, pull toward mid x=0.5 by 0.05."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Cluster' with routing 'shared_node'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_016",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 4,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 4,
+          "name": "Atrium",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.05
+          },
+          "routing": {
+            "type": "void_core",
+            "polygon": [
+              [
+                0.42,
+                0.3
+              ],
+              [
+                0.58,
+                0.3
+              ],
+              [
+                0.58,
+                0.7
+              ],
+              [
+                0.42,
+                0.7
+              ]
+            ]
+          },
+          "nodes": [
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.25,
+                0.5
+              ],
+              "size": [
+                0.22,
+                0.18
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.75,
+                0.5
+              ],
+              "size": [
+                0.2,
+                0.18
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.5,
+                0.15
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.5,
+                0.85
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.35,
+                0.25
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            },
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.08,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "ATRIUM"
+            ],
+            [
+              "KITDIN",
+              "ATRIUM"
+            ],
+            [
+              "BED1",
+              "ATRIUM"
+            ],
+            [
+              "BED2",
+              "ATRIUM"
+            ],
+            [
+              "BATH",
+              "LIV"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "keep_out": {
+              "polygon": [
+                [
+                  0.42,
+                  0.3
+                ],
+                [
+                  0.58,
+                  0.3
+                ],
+                [
+                  0.58,
+                  0.7
+                ],
+                [
+                  0.42,
+                  0.7
+                ]
+              ]
+            },
+            "visual_connection": [
+              "LIV",
+              "KITDIN",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Align long edges of rooms parallel to atrium\u00e2\u20ac\u2122s nearest edge.",
+            "Maintain 0.03\u00e2\u20ac\u201c0.05 buffer from atrium polygon."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Atrium' with routing 'void_core'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_017",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 5,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 5,
+          "name": "L-Shaped",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "el_spine",
+            "segments": [
+              {
+                "polyline": [
+                  [
+                    0.1,
+                    0.5
+                  ],
+                  [
+                    0.6,
+                    0.5
+                  ]
+                ],
+                "width": 0.1
+              },
+              {
+                "polyline": [
+                  [
+                    0.1,
+                    0.5
+                  ],
+                  [
+                    0.1,
+                    0.85
+                  ]
+                ],
+                "width": 0.1
+              }
+            ]
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.35,
+                0.5
+              ],
+              "size": [
+                0.22,
+                0.2
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.55,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.18
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.1,
+                0.72
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.1,
+                0.88
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.52,
+                0.3
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "ENTRY",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "branching": {
+              "spine": "horizontal_then_vertical",
+              "private_branch": [
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            }
+          },
+          "placement_hints": [
+            "Keep private branch centers within x \u00e2\u02c6\u02c6 [0.06,0.16].",
+            "If BED2 overlaps boundary margin, nudge y to 0.90 and shrink h by 5%."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'L-Shaped' with routing 'el_spine'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_018",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 6,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 6,
+          "name": "U-Shaped",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.05
+          },
+          "routing": {
+            "type": "u_court",
+            "open_side": "south",
+            "void": [
+              [
+                0.25,
+                0.35
+              ],
+              [
+                0.75,
+                0.35
+              ],
+              [
+                0.75,
+                0.65
+              ],
+              [
+                0.25,
+                0.65
+              ]
+            ]
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.5,
+                0.15
+              ],
+              "size": [
+                0.14,
+                0.18
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.5,
+                0.8
+              ],
+              "size": [
+                0.26,
+                0.18
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.8,
+                0.5
+              ],
+              "size": [
+                0.2,
+                0.18
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.2,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.5,
+                0.4
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "COURT"
+            ],
+            [
+              "KITDIN",
+              "COURT"
+            ],
+            [
+              "BED1",
+              "COURT"
+            ],
+            [
+              "BATH",
+              "KITDIN"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "keep_out": {
+              "polygon": [
+                [
+                  0.25,
+                  0.35
+                ],
+                [
+                  0.75,
+                  0.35
+                ],
+                [
+                  0.75,
+                  0.65
+                ],
+                [
+                  0.25,
+                  0.65
+                ]
+              ]
+            },
+            "must_face_void": [
+              "LIV",
+              "KITDIN",
+              "BED1"
+            ]
+          },
+          "placement_hints": [
+            "Open side faces south; keep ENTRY below void (y < 0.30).",
+            "Align LIV centered on x=0.5 for symmetry."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'U-Shaped' with routing 'u_court'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_019",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 7,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 7,
+          "name": "T-Shaped",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "tee_spine",
+            "stem": {
+              "polyline": [
+                [
+                  0.5,
+                  0.1
+                ],
+                [
+                  0.5,
+                  0.7
+                ]
+              ],
+              "width": 0.1
+            },
+            "cross": {
+              "polyline": [
+                [
+                  0.2,
+                  0.7
+                ],
+                [
+                  0.8,
+                  0.7
+                ]
+              ],
+              "width": 0.1
+            }
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.5,
+                0.1
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.5,
+                0.4
+              ],
+              "size": [
+                0.24,
+                0.2
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.5,
+                0.58
+              ],
+              "size": [
+                0.2,
+                0.18
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.28,
+                0.85
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.72,
+                0.85
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.7,
+                0.58
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BED1"
+            ],
+            [
+              "KITDIN",
+              "BED2"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "mirror_about": {
+              "axis": "x=0.5",
+              "nodes": [
+                "BED1",
+                "BED2"
+              ]
+            },
+            "vertical_order": {
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN"
+              ]
+            }
+          },
+          "placement_hints": [
+            "Keep BED1/BED2 centers symmetric around x=0.5 (\u00ce\u201dx <= 0.01).",
+            "If KITDIN width grows, reduce LIV height first."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'T-Shaped' with routing 'tee_spine'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_020",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 8,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 8,
+          "name": "Cross / X-Shaped",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.05
+          },
+          "routing": {
+            "type": "cross_spines",
+            "arms": [
+              {
+                "polyline": [
+                  [
+                    0.5,
+                    0.15
+                  ],
+                  [
+                    0.5,
+                    0.85
+                  ]
+                ],
+                "width": 0.08
+              },
+              {
+                "polyline": [
+                  [
+                    0.15,
+                    0.5
+                  ],
+                  [
+                    0.85,
+                    0.5
+                  ]
+                ],
+                "width": 0.08
+              }
+            ]
+          },
+          "nodes": [
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.5,
+                0.35
+              ],
+              "size": [
+                0.22,
+                0.18
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.5,
+                0.65
+              ],
+              "size": [
+                0.2,
+                0.16
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.3,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.16
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.16
+              ]
+            },
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.2,
+                0.2
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.8,
+                0.2
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "LIV",
+              "BED1"
+            ],
+            [
+              "LIV",
+              "BED2"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "orthogonal_spines": true,
+            "keep_clear": {
+              "rect": [
+                0.46,
+                0.46,
+                0.08,
+                0.08
+              ]
+            }
+          },
+          "placement_hints": [
+            "Preserve a clear cross at center (no nodes inside 0.46\u00e2\u20ac\u201c0.54 square).",
+            "Balance public (south) vs private (east/west) arms."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Cross / X-Shaped' with routing 'cross_spines'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_021",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 9,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 9,
+          "name": "Terraced / Stepped",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.05
+          },
+          "routing": {
+            "type": "stepped_bands",
+            "levels": [
+              {
+                "y": 0.25,
+                "depth": 0.2
+              },
+              {
+                "y": 0.5,
+                "depth": 0.2
+              },
+              {
+                "y": 0.75,
+                "depth": 0.2
+              }
+            ]
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.15,
+                0.25
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.4,
+                0.4
+              ],
+              "size": [
+                0.24,
+                0.18
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.65,
+                0.55
+              ],
+              "size": [
+                0.2,
+                0.16
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.35,
+                0.7
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.6,
+                0.85
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.8,
+                0.35
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "monotonic_y": {
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "view_axis": "north"
+          },
+          "placement_hints": [
+            "Snap y-centers to bands (0.25/0.50/0.75 \u00c2\u00b1 0.04).",
+            "If width overflow, trim each upper level room width by 3%."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Terraced / Stepped' with routing 'stepped_bands'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_022",
+      "vary": "P3_PlanningTypes",
+      "choice_id": 10,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 10,
+          "name": "Free-Form / Organic",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.05
+          },
+          "routing": {
+            "type": "soft_paths",
+            "control_points": [
+              [
+                0.15,
+                0.2
+              ],
+              [
+                0.45,
+                0.45
+              ],
+              [
+                0.8,
+                0.65
+              ]
+            ]
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.12,
+                0.22
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.38,
+                0.42
+              ],
+              "size": [
+                0.26,
+                0.2
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.62,
+                0.55
+              ],
+              "size": [
+                0.2,
+                0.18
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.82,
+                0.74
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.22,
+                0.7
+              ],
+              "size": [
+                0.18,
+                0.16
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.55,
+                0.3
+              ],
+              "size": [
+                0.12,
+                0.12
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BED1"
+            ],
+            [
+              "LIV",
+              "BED2"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "curvilinear_bias": true,
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "KITDIN"
+              ],
+              "east": [
+                "BED1"
+              ]
+            }
+          },
+          "placement_hints": [
+            "Project door sides to tangents of soft path at nearest control arc.",
+            "Resolve overlaps by shrinking largest adjacent public room first (max 8%)."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Free-Form / Organic' with routing 'soft_paths'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_023",
+      "vary": "P4_SiteBoundaries",
+      "choice_id": 1,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 1,
+          "name": "Square 20x20 - Small setback",
+          "boundary": {
+            "type": "rectangle",
+            "width_m": 20.0,
+            "height_m": 20.0
+          },
+          "setbacks_m": {
+            "uniform": 1.0
+          },
+          "site_area_m2": 400.0,
+          "buildable": {
+            "type": "rectangle",
+            "width_m": 18.0,
+            "height_m": 18.0,
+            "area_m2": 324.0
+          },
+          "notes": "Analytical inset rectangle."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Square 20x20 - Small setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_024",
+      "vary": "P4_SiteBoundaries",
+      "choice_id": 2,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 2,
+          "name": "Square 20x20 - Medium setback",
+          "boundary": {
+            "type": "rectangle",
+            "width_m": 20.0,
+            "height_m": 20.0
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 400.0,
+          "buildable": {
+            "type": "rectangle",
+            "width_m": 14.0,
+            "height_m": 14.0,
+            "area_m2": 196.0
+          },
+          "notes": "Analytical inset rectangle."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Square 20x20 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_025",
+      "vary": "P4_SiteBoundaries",
+      "choice_id": 4,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 4,
+          "name": "Rectangle 30x15 - Small setback",
+          "boundary": {
+            "type": "rectangle",
+            "width_m": 30.0,
+            "height_m": 15.0
+          },
+          "setbacks_m": {
+            "uniform": 1.0
+          },
+          "site_area_m2": 450.0,
+          "buildable": {
+            "type": "rectangle",
+            "width_m": 28.0,
+            "height_m": 13.0,
+            "area_m2": 364.0
+          },
+          "notes": "Analytical inset rectangle."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Rectangle 30x15 - Small setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_026",
+      "vary": "P4_SiteBoundaries",
+      "choice_id": 5,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 5,
+          "name": "Rectangle 30x15 - Medium setback",
+          "boundary": {
+            "type": "rectangle",
+            "width_m": 30.0,
+            "height_m": 15.0
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 450.0,
+          "buildable": {
+            "type": "rectangle",
+            "width_m": 24.0,
+            "height_m": 9.0,
+            "area_m2": 216.0
+          },
+          "notes": "Analytical inset rectangle."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Rectangle 30x15 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    },
+    {
+      "case_id": "CASE_027",
+      "vary": "P4_SiteBoundaries",
+      "choice_id": 21,
+      "selection": {
+        "location": {
+          "id": 3,
+          "city": "Istanbul",
+          "country": "Turkey",
+          "climate": "Mediterranean (Csa)",
+          "notes": "Mixed seasonal performance"
+        },
+        "family": {
+          "id": 8,
+          "family": "4 members (2 adults + 2 children)",
+          "profession": "Engineers",
+          "notes": "Need study and play spaces"
+        },
+        "planning": {
+          "id": 1,
+          "name": "Linear",
+          "bounds": {
+            "width": 1.0,
+            "height": 1.0,
+            "margin": 0.04
+          },
+          "routing": {
+            "type": "corridor",
+            "polyline": [
+              [
+                0.08,
+                0.5
+              ],
+              [
+                0.92,
+                0.5
+              ]
+            ],
+            "width": 0.1,
+            "orientation": "east-west"
+          },
+          "nodes": [
+            {
+              "id": "ENTRY",
+              "role": "Entry",
+              "center": [
+                0.1,
+                0.5
+              ],
+              "size": [
+                0.12,
+                0.16
+              ]
+            },
+            {
+              "id": "LIV",
+              "role": "Living",
+              "center": [
+                0.26,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.26
+              ]
+            },
+            {
+              "id": "KITDIN",
+              "role": "KitchenDining",
+              "center": [
+                0.42,
+                0.5
+              ],
+              "size": [
+                0.18,
+                0.22
+              ]
+            },
+            {
+              "id": "BATH",
+              "role": "Bath",
+              "center": [
+                0.56,
+                0.5
+              ],
+              "size": [
+                0.1,
+                0.14
+              ]
+            },
+            {
+              "id": "BED1",
+              "role": "Bedroom",
+              "center": [
+                0.7,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            },
+            {
+              "id": "BED2",
+              "role": "Bedroom",
+              "center": [
+                0.84,
+                0.5
+              ],
+              "size": [
+                0.16,
+                0.2
+              ]
+            }
+          ],
+          "graph_edges": [
+            [
+              "ENTRY",
+              "LIV"
+            ],
+            [
+              "LIV",
+              "KITDIN"
+            ],
+            [
+              "KITDIN",
+              "BATH"
+            ],
+            [
+              "BATH",
+              "BED1"
+            ],
+            [
+              "BED1",
+              "BED2"
+            ]
+          ],
+          "constraints": {
+            "non_overlap": true,
+            "min_gap": 0.02,
+            "order_along_axis": {
+              "axis": "x",
+              "sequence": [
+                "ENTRY",
+                "LIV",
+                "KITDIN",
+                "BATH",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "fa\u00c3\u00a7ade_priority": {
+              "south": [
+                "LIV",
+                "BED1",
+                "BED2"
+              ]
+            },
+            "service_stack": [
+              "BATH",
+              "KITDIN"
+            ],
+            "access_from_corridor": [
+              "LIV",
+              "KITDIN",
+              "BATH",
+              "BED1",
+              "BED2"
+            ]
+          },
+          "placement_hints": [
+            "Project node centers to nearest point on corridor centerline if y-drift > 0.08.",
+            "Snap x-order to sequence; resolve ties by moving right nodes +0.02."
+          ]
+        },
+        "site": {
+          "id": 21,
+          "name": "Composite plot 30x25 - Medium setback",
+          "boundary": {
+            "type": "polygon",
+            "units": "m",
+            "vertices_xy": [
+              [
+                0,
+                0
+              ],
+              [
+                30,
+                0
+              ],
+              [
+                30,
+                25
+              ],
+              [
+                0,
+                25
+              ]
+            ]
+          },
+          "setbacks_m": {
+            "uniform": 3.0
+          },
+          "site_area_m2": 750.0,
+          "buildable": {
+            "type": "offset_polygon",
+            "join_style": "mitre",
+            "inset_m": 3.0,
+            "area_m2": 486.0,
+            "result_geom": "Polygon"
+          },
+          "subplots": [
+            {
+              "rect": [
+                0,
+                0,
+                15,
+                25
+              ]
+            },
+            {
+              "rect": [
+                15,
+                0,
+                15,
+                25
+              ]
+            }
+          ],
+          "notes": "Two merged 15x25 parcels; inset via negative buffer."
+        }
+      },
+      "llm": {
+        "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+        "user": "Design a single-family house in Istanbul, Turkey (climate: Mediterranean (Csa)). Family: 4 members (2 adults + 2 children) (Engineers). Use planning type 'Linear' with routing 'corridor'. Site: Composite plot 30x25 - Medium setback. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+        "schema_hint": {
+          "layout_json": {
+            "rooms": "list of {name, w, h, origin} in meters",
+            "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+            "notes": "assumptions and constraints applied"
+          }
+        }
+      }
+    }
+  ]
+}

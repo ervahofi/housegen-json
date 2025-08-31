@@ -1,0 +1,25 @@
+{
+  "P2_FamilyTypologies": [
+    { "id": 1, "family": "Single adult", "profession": "Remote tech worker", "notes": "High digital needs, home office" },
+    { "id": 2, "family": "Single adult", "profession": "Artist / Freelancer", "notes": "Studio or workshop space" },
+    { "id": 3, "family": "Couple (2 adults)", "profession": "Both office workers", "notes": "Daily commuting" },
+    { "id": 4, "family": "Couple (2 adults)", "profession": "Remote worker + healthcare", "notes": "Mixed schedules" },
+    { "id": 5, "family": "Couple (2 adults)", "profession": "Retired", "notes": "Focus on comfort & accessibility" },
+    { "id": 6, "family": "3 members (2 adults + 1 child)", "profession": "Tech + teacher", "notes": "School commute" },
+    { "id": 7, "family": "3 members (2 adults + 1 elder parent)", "profession": "Mixed work", "notes": "Multigenerational living" },
+    { "id": 8, "family": "4 members (2 adults + 2 children)", "profession": "Engineers", "notes": "Need study and play spaces" },
+    { "id": 9, "family": "4 members (2 adults + 2 children)", "profession": "Healthcare + retail", "notes": "Shift-based routines" },
+    { "id": 10, "family": "4 members (2 adults + 2 children)", "profession": "Artists", "notes": "Creative use of space" },
+    { "id": 11, "family": "5 members (2 adults + 3 children)", "profession": "Tech + homemaker", "notes": "Larger bedrooms required" },
+    { "id": 12, "family": "5 members (3 adults + 2 children)", "profession": "Family business", "notes": "Shared workspace needed" },
+    { "id": 13, "family": "5 members (2 adults + 2 children + 1 elder)", "profession": "Teacher + doctor", "notes": "Care responsibilities" },
+    { "id": 14, "family": "6 members (2 adults + 4 children)", "profession": "Mixed professions", "notes": "Large family housing" },
+    { "id": 15, "family": "6 members (3 adults + 3 children)", "profession": "Family-owned shop", "notes": "Work/live mixed" },
+    { "id": 16, "family": "7 members (2 adults + 5 children)", "profession": "Farming", "notes": "Outdoor/agricultural needs" },
+    { "id": 17, "family": "7 members (2 adults + 3 children + 2 elders)", "profession": "Mixed work", "notes": "Generational overlap" },
+    { "id": 18, "family": "8 members (Extended family)", "profession": "Retail + service jobs", "notes": "Shared kitchen priority" },
+    { "id": 19, "family": "9 members (Large family)", "profession": "Mixed professions", "notes": "Multi-bedroom demand" },
+    { "id": 20, "family": "10 members (3 generations)", "profession": "Farming + trades", "notes": "Strong communal areas" },
+    { "id": 21, "family": "Cohousing (Unrelated adults)", "profession": "Students / professionals", "notes": "Shared facilities" }
+  ]
+}

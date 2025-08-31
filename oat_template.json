@@ -1,0 +1,38 @@
+{
+  "template_version": "1.0",
+  "mode": "OAT",
+  "include_control_case": true,
+
+  "baseline": {
+    "P1_Locations_id": 3,
+    "P2_FamilyTypologies_id": 8,
+    "P3_PlanningTypes_id": 1,
+    "P4_SiteBoundaries_id": 21
+  },
+
+  "sweeps": [
+    { "parameter": "P1_Locations", "ids": "*",
+      "filter": { "climate_in": ["Mediterranean (Csa)", "Oceanic (Cfb)"] } },
+    { "parameter": "P2_FamilyTypologies", "ids": [1,3,5,8,11] },
+    { "parameter": "P3_PlanningTypes", "ids": "*" },
+    { "parameter": "P4_SiteBoundaries", "ids": [1,2,4,5,21] }
+  ],
+
+  "llm_prompt": {
+    "system": "You are an architect's copilot. Reply in JSON matching the provided schema.",
+    "user_template": "Design a single-family house in {{location.city}}, {{location.country}} (climate: {{location.climate}}). Family: {{family.family}} ({{family.profession}}). Use planning type '{{planning.name}}' with routing '{{planning.routing.type}}'. Site: {{site.name}}. Respect setbacks and produce a layout using the planning nodes/edges. Output JSON only following the given schema.",
+    "output_schema_hint": {
+      "layout_json": {
+        "rooms": "list of {name, w, h, origin} in meters",
+        "corridor": "either {centerline:[[x,y],...], width} or {tiles:[{x,y}], cell_size}",
+        "notes": "assumptions and constraints applied"
+      }
+    }
+  },
+
+  "options": {
+    "embed_full_planning_type": false,
+    "attach_verbose_context": false,
+    "max_cases": null
+  }
+}
